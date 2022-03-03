@@ -8,22 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		1BE14F3827D0F00900CD1533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE14F3727D0F00900CD1533 /* AppDelegate.swift */; };
-		1BE14F3A27D0F00900CD1533 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE14F3927D0F00900CD1533 /* SceneDelegate.swift */; };
-		1BE14F3C27D0F00900CD1533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE14F3B27D0F00900CD1533 /* ViewController.swift */; };
-		1BE14F3F27D0F00900CD1533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BE14F3D27D0F00900CD1533 /* Main.storyboard */; };
 		1BE14F4127D0F00B00CD1533 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BE14F4027D0F00B00CD1533 /* Assets.xcassets */; };
 		1BE14F4427D0F00B00CD1533 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BE14F4227D0F00B00CD1533 /* LaunchScreen.storyboard */; };
+		1BE14F4C27D0F1B100CD1533 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE14F4B27D0F1B100CD1533 /* MainViewController.swift */; };
+		1BE14F5027D0F1FC00CD1533 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE14F4F27D0F1FC00CD1533 /* MainViewModel.swift */; };
+		AFBCA112A9EB4850C944545D /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBCAD1BEF732612904CFAB7 /* TaskManager.swift */; };
+		AFBCAC1EDEF542E1AD3F8EE9 /* ParallelogramButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBCAEB3212074783F11C216 /* ParallelogramButton.swift */; };
+		AFBCAD07A5E74B3C329FFC44 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFBCABA2A9B5A98F37108F99 /* Roboto-Regular.ttf */; };
+		C73DA0E53D5D4E055A22035B /* Pods_UnlimitedAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F72687328677081335BB95 /* Pods_UnlimitedAccess.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1BE14F3427D0F00900CD1533 /* UnlimitedAccess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnlimitedAccess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE14F3727D0F00900CD1533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1BE14F3927D0F00900CD1533 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1BE14F3B27D0F00900CD1533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1BE14F3E27D0F00900CD1533 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1BE14F4027D0F00B00CD1533 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1BE14F4327D0F00B00CD1533 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BE14F4527D0F00B00CD1533 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1BE14F4B27D0F1B100CD1533 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		1BE14F4F27D0F1FC00CD1533 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		1BE14F5127D0FA5600CD1533 /* BebasNeue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Regular.ttf"; sourceTree = "<group>"; };
+		346C92276ECD0E50C5D9325F /* Pods-UnlimitedAccess.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnlimitedAccess.debug.xcconfig"; path = "Target Support Files/Pods-UnlimitedAccess/Pods-UnlimitedAccess.debug.xcconfig"; sourceTree = "<group>"; };
+		AFBCABA2A9B5A98F37108F99 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		AFBCAD1BEF732612904CFAB7 /* TaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
+		AFBCAEB3212074783F11C216 /* ParallelogramButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParallelogramButton.swift; sourceTree = "<group>"; };
+		C2059099DDECADF60BEA6093 /* Pods-UnlimitedAccess.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnlimitedAccess.release.xcconfig"; path = "Target Support Files/Pods-UnlimitedAccess/Pods-UnlimitedAccess.release.xcconfig"; sourceTree = "<group>"; };
+		C2F72687328677081335BB95 /* Pods_UnlimitedAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnlimitedAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +40,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C73DA0E53D5D4E055A22035B /* Pods_UnlimitedAccess.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		017317C0FE6585FB29AA6683 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2F72687328677081335BB95 /* Pods_UnlimitedAccess.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1BE14F2B27D0F00800CD1533 = {
 			isa = PBXGroup;
 			children = (
 				1BE14F3627D0F00900CD1533 /* UnlimitedAccess */,
 				1BE14F3527D0F00900CD1533 /* Products */,
+				21EA16EA57EE821B52668CE9 /* Pods */,
+				017317C0FE6585FB29AA6683 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +76,67 @@
 		1BE14F3627D0F00900CD1533 /* UnlimitedAccess */ = {
 			isa = PBXGroup;
 			children = (
+				1BE14F4D27D0F1D900CD1533 /* Controllers */,
 				1BE14F3727D0F00900CD1533 /* AppDelegate.swift */,
-				1BE14F3927D0F00900CD1533 /* SceneDelegate.swift */,
-				1BE14F3B27D0F00900CD1533 /* ViewController.swift */,
-				1BE14F3D27D0F00900CD1533 /* Main.storyboard */,
 				1BE14F4027D0F00B00CD1533 /* Assets.xcassets */,
 				1BE14F4227D0F00B00CD1533 /* LaunchScreen.storyboard */,
 				1BE14F4527D0F00B00CD1533 /* Info.plist */,
+				AFBCA000F58ECAC580CF7BA5 /* Resources */,
+				AFBCAE0D2CD6559F5F590970 /* Utils */,
+				AFBCAD1BEF732612904CFAB7 /* TaskManager.swift */,
 			);
 			path = UnlimitedAccess;
+			sourceTree = "<group>";
+		};
+		1BE14F4D27D0F1D900CD1533 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1BE14F4E27D0F1E300CD1533 /* MainViewController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1BE14F4E27D0F1E300CD1533 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1BE14F4B27D0F1B100CD1533 /* MainViewController.swift */,
+				1BE14F4F27D0F1FC00CD1533 /* MainViewModel.swift */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		21EA16EA57EE821B52668CE9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				346C92276ECD0E50C5D9325F /* Pods-UnlimitedAccess.debug.xcconfig */,
+				C2059099DDECADF60BEA6093 /* Pods-UnlimitedAccess.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AFBCA000F58ECAC580CF7BA5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AFBCAA7DC18932C33FA34B3E /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AFBCAA7DC18932C33FA34B3E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1BE14F5127D0FA5600CD1533 /* BebasNeue-Regular.ttf */,
+				AFBCABA2A9B5A98F37108F99 /* Roboto-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		AFBCAE0D2CD6559F5F590970 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AFBCAEB3212074783F11C216 /* ParallelogramButton.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +146,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1BE14F4827D0F00B00CD1533 /* Build configuration list for PBXNativeTarget "UnlimitedAccess" */;
 			buildPhases = (
+				8A2F174EA3B90A9CDFA643FE /* [CP] Check Pods Manifest.lock */,
 				1BE14F3027D0F00800CD1533 /* Sources */,
 				1BE14F3127D0F00800CD1533 /* Frameworks */,
 				1BE14F3227D0F00800CD1533 /* Resources */,
+				E38D9593456E4D101C7106B9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,34 +201,70 @@
 			files = (
 				1BE14F4427D0F00B00CD1533 /* LaunchScreen.storyboard in Resources */,
 				1BE14F4127D0F00B00CD1533 /* Assets.xcassets in Resources */,
-				1BE14F3F27D0F00900CD1533 /* Main.storyboard in Resources */,
+				AFBCAD07A5E74B3C329FFC44 /* Roboto-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8A2F174EA3B90A9CDFA643FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UnlimitedAccess-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E38D9593456E4D101C7106B9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnlimitedAccess/Pods-UnlimitedAccess-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnlimitedAccess/Pods-UnlimitedAccess-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnlimitedAccess/Pods-UnlimitedAccess-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1BE14F3027D0F00800CD1533 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BE14F3C27D0F00900CD1533 /* ViewController.swift in Sources */,
+				1BE14F4C27D0F1B100CD1533 /* MainViewController.swift in Sources */,
 				1BE14F3827D0F00900CD1533 /* AppDelegate.swift in Sources */,
-				1BE14F3A27D0F00900CD1533 /* SceneDelegate.swift in Sources */,
+				1BE14F5027D0F1FC00CD1533 /* MainViewModel.swift in Sources */,
+				AFBCAC1EDEF542E1AD3F8EE9 /* ParallelogramButton.swift in Sources */,
+				AFBCA112A9EB4850C944545D /* TaskManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		1BE14F3D27D0F00900CD1533 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1BE14F3E27D0F00900CD1533 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1BE14F4227D0F00B00CD1533 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -284,6 +394,7 @@
 		};
 		1BE14F4927D0F00B00CD1533 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 346C92276ECD0E50C5D9325F /* Pods-UnlimitedAccess.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -294,7 +405,6 @@
 				INFOPLIST_FILE = UnlimitedAccess/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -312,6 +422,7 @@
 		};
 		1BE14F4A27D0F00B00CD1533 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2059099DDECADF60BEA6093 /* Pods-UnlimitedAccess.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -322,7 +433,6 @@
 				INFOPLIST_FILE = UnlimitedAccess/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -4,9 +4,9 @@
 
 import Foundation
 
-final class TaskManager {
+final class DummyData {
 
-    static let shared = TaskManager()
+    static let shared = DummyData()
 
     var footerData = ["Lorem ipsum, lorem ipsum", "Lorem ipsum", "Lorem"]
 

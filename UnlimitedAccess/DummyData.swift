@@ -10,5 +10,6 @@ final class DummyData {
 
     var footerData = ["Lorem ipsum, lorem ipsum", "Lorem ipsum", "Lorem"]
 
-    private init() {}
+    private init() {
+    }
 }

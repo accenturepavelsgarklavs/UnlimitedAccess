@@ -9,16 +9,16 @@ import UIKit
 import SnapKit
 
 final class MainViewController: UIViewController {
-    
+
     private var mainViewModel: MainViewModel?
 
     private let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
     private let continueButton = ParallelogramButton()
     private let footerStack = UIStackView()
-    private let offerStack = UIStackView()
-    private let oneMonthStack = OneMonthStackView()
-    private let oneYearStack = OneYearStackView()
-    private let threeMonthStack = ThreeMonthStackView()
+    private let planStack = UIStackView()
+    private let oneMonthView = PlanView()
+    private let oneYearView = PlanView()
+    private let threeMonthView = PlanView()
     private let titleDescriptionLabel = UILabel()
     private let titleLabel = UILabel()
 
@@ -27,20 +27,23 @@ final class MainViewController: UIViewController {
         setupBackground()
         setupFooterStack()
         setupContinueButton()
-        setupOfferStack()
+        setupPlanStack()
+        setupOneMonthView()
+        setupOneYearView()
+        setupThreeMonthView()
         setupTitleDescriptionLabel()
         setupTitleLabel()
     }
 
     func configure(mainViewModel: MainViewModel) {
-            self.mainViewModel = mainViewModel
-        }
+        self.mainViewModel = mainViewModel
+    }
 }
 
 private extension MainViewController {
     func setupBackground() {
         backgroundImage.image = UIImage(named: "bgImage")
-        backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
+        backgroundImage.contentMode = .scaleAspectFill
         view.addSubview(backgroundImage)
     }
 
@@ -50,7 +53,7 @@ private extension MainViewController {
 
         continueButton.setTitle("Continue", for: .normal)
         continueButton.titleLabel?.font = UIFont(name: "BebasNeue", size: 32)
-        
+
         continueButton.setTitleColor(.gray, for: .highlighted)
 
         continueButton.snp.makeConstraints { make in
@@ -83,27 +86,75 @@ private extension MainViewController {
         }
     }
 
-    func setupOfferStack() {
-        view.addSubview(offerStack)
+    func setupPlanStack() {
+        view.addSubview(planStack)
 
-        offerStack.axis = .horizontal
-        offerStack.alignment = .bottom
-        offerStack.distribution = .equalCentering
+        planStack.axis = .horizontal
+        planStack.distribution = .fillEqually
+        planStack.spacing = 5
 
-        offerStack.addArrangedSubview(oneMonthStack)
-        oneMonthStack.configure()
-
-        offerStack.addArrangedSubview(oneYearStack)
-        oneYearStack.configure()
-
-        offerStack.addArrangedSubview(threeMonthStack)
-        threeMonthStack.configure()
-
-        offerStack.snp.makeConstraints { make in
-            make.bottom.equalTo(continueButton.snp.top).offset(-25)
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(30)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
+        planStack.snp.makeConstraints { make in
+            make.bottom.equalTo(continueButton.snp.top).inset(-40)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().inset(20)
         }
+    }
+
+    func setupOneMonthView() {
+        planStack.addArrangedSubview(oneMonthView)
+        oneMonthView.configure()
+
+        var oneMonthTopPlanInfo = PlanTopView.Model()
+        oneMonthTopPlanInfo.durationUnitText = "Month"
+        oneMonthTopPlanInfo.durationText = "1"
+        oneMonthTopPlanInfo.pricePereWeekText = "15$ / week"
+
+        var oneMonthBottomPlanInfo = PlanBottomView.Model()
+        oneMonthBottomPlanInfo.priceLabelText = "15$"
+        oneMonthBottomPlanInfo.unitLabelText = "Month"
+
+        oneMonthView.setPlansInfo(topModel: oneMonthTopPlanInfo, bottomModel: oneMonthBottomPlanInfo)
+
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(oneMonthViewClickAction))
+        oneMonthView.addGestureRecognizer(gesture)
+    }
+
+    func setupOneYearView() {
+        planStack.addArrangedSubview(oneYearView)
+        oneYearView.configure()
+
+        var oneYearTopPlanInfo = PlanTopView.Model()
+        oneYearTopPlanInfo.durationUnitText = "Year"
+        oneYearTopPlanInfo.durationText = "1"
+        oneYearTopPlanInfo.pricePereWeekText = "25$ / week"
+
+        var oneYearBottomPlanInfo = PlanBottomView.Model()
+        oneYearBottomPlanInfo.priceLabelText = "45$"
+        oneYearBottomPlanInfo.unitLabelText = "Year"
+
+        oneYearView.setPlansInfo(topModel: oneYearTopPlanInfo, bottomModel: oneYearBottomPlanInfo)
+
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(oneYearViewClickAction))
+        oneYearView.addGestureRecognizer(gesture)
+    }
+
+    func setupThreeMonthView() {
+        planStack.addArrangedSubview(threeMonthView)
+        threeMonthView.configure()
+
+        var threeMonthTopPlanInfo = PlanTopView.Model()
+        threeMonthTopPlanInfo.durationUnitText = "Months"
+        threeMonthTopPlanInfo.durationText = "3"
+        threeMonthTopPlanInfo.pricePereWeekText = "20$ / week"
+
+        var threeMonthBottomPlanInfo = PlanBottomView.Model()
+        threeMonthBottomPlanInfo.priceLabelText = "35$"
+        threeMonthBottomPlanInfo.unitLabelText = "3 Months"
+
+        threeMonthView.setPlansInfo(topModel: threeMonthTopPlanInfo, bottomModel: threeMonthBottomPlanInfo)
+
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(threeMonthViewClickAction))
+        threeMonthView.addGestureRecognizer(gesture)
     }
 
     func setupTitleDescriptionLabel() {
@@ -116,7 +167,7 @@ private extension MainViewController {
         titleDescriptionLabel.font = UIFont(name: "Roboto", size: 18)
 
         titleDescriptionLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(offerStack.snp.top).offset(-25)
+            make.bottom.equalTo(planStack.snp.top).offset(-25)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(60)
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(60)
         }
@@ -135,5 +186,23 @@ private extension MainViewController {
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
+    }
+
+    @objc func oneMonthViewClickAction() {
+        oneMonthView.viewModel.onPlanClicked?()
+        oneYearView.viewModel.onPlanClickedUncheckPrevious?()
+        threeMonthView.viewModel.onPlanClickedUncheckPrevious?()
+    }
+
+    @objc func oneYearViewClickAction() {
+        oneYearView.viewModel.onPlanClicked?()
+        oneMonthView.viewModel.onPlanClickedUncheckPrevious?()
+        threeMonthView.viewModel.onPlanClickedUncheckPrevious?()
+    }
+
+    @objc func threeMonthViewClickAction() {
+        threeMonthView.viewModel.onPlanClicked?()
+        oneMonthView.viewModel.onPlanClickedUncheckPrevious?()
+        oneYearView.viewModel.onPlanClickedUncheckPrevious?()
     }
 }

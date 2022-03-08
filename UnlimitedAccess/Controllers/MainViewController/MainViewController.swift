@@ -21,18 +21,20 @@ final class MainViewController: UIViewController {
     private let threeMonthView = PlanView()
     private let titleDescriptionLabel = UILabel()
     private let titleLabel = UILabel()
+    private let scrollView = UIScrollView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBackground()
         setupFooterStack()
-        setupContinueButton()
+        setupScrollView()
+        setupTitleLabel()
+        setupTitleDescriptionLabel()
         setupPlanStack()
-        setupOneMonthView()
         setupOneYearView()
         setupThreeMonthView()
-        setupTitleDescriptionLabel()
-        setupTitleLabel()
+        setupOneMonthView()
+        setupContinueButton()
     }
 
     func configure(mainViewModel: MainViewModel) {
@@ -48,7 +50,7 @@ private extension MainViewController {
     }
 
     func setupContinueButton() {
-        view.addSubview(continueButton)
+        scrollView.addSubview(continueButton)
         continueButton.configure(offset: 10, fillColor: .blue)
 
         continueButton.setTitle("Continue", for: .normal)
@@ -58,7 +60,8 @@ private extension MainViewController {
 
         continueButton.snp.makeConstraints { make in
             make.height.equalTo(60)
-            make.bottom.equalTo(footerStack.snp.top).offset(-25)
+            make.top.equalTo(planStack.snp.bottom).offset(35)
+            make.bottom.equalTo(scrollView.snp.bottom)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(40)
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(40)
         }
@@ -87,16 +90,15 @@ private extension MainViewController {
     }
 
     func setupPlanStack() {
-        view.addSubview(planStack)
-
+        scrollView.addSubview(planStack)
+        
         planStack.axis = .horizontal
         planStack.distribution = .fillEqually
         planStack.spacing = 5
 
         planStack.snp.makeConstraints { make in
-            make.bottom.equalTo(continueButton.snp.top).inset(-40)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().inset(20)
+            make.top.equalTo(titleDescriptionLabel.snp.bottom).offset(15)
+            make.width.equalTo(scrollView.snp.width)
         }
     }
 
@@ -104,14 +106,8 @@ private extension MainViewController {
         planStack.addArrangedSubview(oneMonthView)
         oneMonthView.configure()
 
-        var oneMonthTopPlanInfo = PlanTopView.Model()
-        oneMonthTopPlanInfo.durationUnitText = "Month"
-        oneMonthTopPlanInfo.durationText = "1"
-        oneMonthTopPlanInfo.pricePereWeekText = "15$ / week"
-
-        var oneMonthBottomPlanInfo = PlanBottomView.Model()
-        oneMonthBottomPlanInfo.priceLabelText = "15$"
-        oneMonthBottomPlanInfo.unitLabelText = "Month"
+        let oneMonthTopPlanInfo = PlanTopView.Model(durationText: "1", pricePerWeekText: "15$ / week", durationUnitText: "Month")
+        let oneMonthBottomPlanInfo = PlanBottomView.Model(priceLabelText: "15$", unitLabelText: "Month")
 
         oneMonthView.setPlansInfo(topModel: oneMonthTopPlanInfo, bottomModel: oneMonthBottomPlanInfo)
 
@@ -123,14 +119,8 @@ private extension MainViewController {
         planStack.addArrangedSubview(oneYearView)
         oneYearView.configure()
 
-        var oneYearTopPlanInfo = PlanTopView.Model()
-        oneYearTopPlanInfo.durationUnitText = "Year"
-        oneYearTopPlanInfo.durationText = "1"
-        oneYearTopPlanInfo.pricePereWeekText = "25$ / week"
-
-        var oneYearBottomPlanInfo = PlanBottomView.Model()
-        oneYearBottomPlanInfo.priceLabelText = "45$"
-        oneYearBottomPlanInfo.unitLabelText = "Year"
+        let oneYearTopPlanInfo = PlanTopView.Model(durationText: "1", pricePerWeekText: "35$ / week", durationUnitText: "Year", discountText: "Save 50%")
+        let oneYearBottomPlanInfo = PlanBottomView.Model(priceLabelText: "45$", unitLabelText: "Year")
 
         oneYearView.setPlansInfo(topModel: oneYearTopPlanInfo, bottomModel: oneYearBottomPlanInfo)
 
@@ -142,14 +132,8 @@ private extension MainViewController {
         planStack.addArrangedSubview(threeMonthView)
         threeMonthView.configure()
 
-        var threeMonthTopPlanInfo = PlanTopView.Model()
-        threeMonthTopPlanInfo.durationUnitText = "Months"
-        threeMonthTopPlanInfo.durationText = "3"
-        threeMonthTopPlanInfo.pricePereWeekText = "20$ / week"
-
-        var threeMonthBottomPlanInfo = PlanBottomView.Model()
-        threeMonthBottomPlanInfo.priceLabelText = "35$"
-        threeMonthBottomPlanInfo.unitLabelText = "3 Months"
+        let threeMonthTopPlanInfo = PlanTopView.Model(durationText: "3", pricePerWeekText: "20$ / week", durationUnitText: "Months")
+        let threeMonthBottomPlanInfo = PlanBottomView.Model(priceLabelText: "35$", unitLabelText: "3 Months")
 
         threeMonthView.setPlansInfo(topModel: threeMonthTopPlanInfo, bottomModel: threeMonthBottomPlanInfo)
 
@@ -158,7 +142,7 @@ private extension MainViewController {
     }
 
     func setupTitleDescriptionLabel() {
-        view.addSubview(titleDescriptionLabel)
+        scrollView.addSubview(titleDescriptionLabel)
 
         titleDescriptionLabel.text = "Your new guide on the way to healthy living"
         titleDescriptionLabel.numberOfLines = 0
@@ -167,14 +151,14 @@ private extension MainViewController {
         titleDescriptionLabel.font = UIFont(name: "Roboto", size: 18)
 
         titleDescriptionLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(planStack.snp.top).offset(-25)
+            make.top.equalTo(titleLabel.snp.bottom).inset(5)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(60)
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(60)
         }
     }
 
     func setupTitleLabel() {
-        view.addSubview(titleLabel)
+        scrollView.addSubview(titleLabel)
 
         titleLabel.text = "Unlimited access"
         titleLabel.textAlignment = .center
@@ -182,9 +166,22 @@ private extension MainViewController {
         titleLabel.font = UIFont(name: "BebasNeue", size: 48)
 
         titleLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(titleDescriptionLabel.snp.top)
+            make.top.equalTo(scrollView.snp.top).offset(15)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+    }
+
+    func setupScrollView() {
+        view.addSubview(scrollView)
+        
+        scrollView.showsVerticalScrollIndicator = false
+
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.centerY).offset(-70)
+            make.bottom.equalTo(footerStack.snp.top).offset(-10)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().inset(20)
         }
     }
 

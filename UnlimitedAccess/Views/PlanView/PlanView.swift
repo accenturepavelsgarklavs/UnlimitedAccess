@@ -18,28 +18,13 @@ class PlanView: UIView {
         setupBottomView()
 
         viewModel.onPlanClicked = { [weak self] in
-            guard let self = self else {
-                return
-            }
-
-            if self.topView.backgroundColor == .gray && self.bottomView.backgroundColor == .gray {
-                self.topView.backgroundColor = .blue
-                self.bottomView.backgroundColor = .blue
-            } else {
-                self.topView.backgroundColor = .gray
-                self.bottomView.backgroundColor = .gray
-            }
+            guard let self = self else { return }
+            self.setupAfterClicked()
         }
 
         viewModel.onPlanClickedUncheckPrevious = { [weak self] in
-            guard let self = self else {
-                return
-            }
-
-            if self.topView.backgroundColor == .blue && self.bottomView.backgroundColor == .blue {
-                self.topView.backgroundColor = .gray
-                self.bottomView.backgroundColor = .gray
-            }
+            guard let self = self else { return }
+            self.setupOtherPlansAfterClickedNewPlan()
         }
     }
 
@@ -50,7 +35,55 @@ class PlanView: UIView {
 }
 
 private extension PlanView {
-
+    func setupAfterClicked() {
+        if topView.discountIsSet == false {
+            if topView.getStackBackgroundColor() == .blue {
+                UIView.animate(withDuration: 0.5, delay: 0, options: .beginFromCurrentState, animations: {
+                    self.transform = .init(scaleX: 1, y: 1)
+                    self.topView.setBackroundColorForStack(color: .gray)
+                    self.bottomView.backgroundColor = .gray
+                })
+            } else {
+                UIView.animate(withDuration: 0.5, delay: 0, options: .beginFromCurrentState, animations: {
+                    self.transform = .init(scaleX: 1, y: 1.1)
+                    self.topView.setBackroundColorForStack(color: .blue)
+                    self.bottomView.backgroundColor = .blue
+                })}
+        } else {
+            if topView.getStackBackgroundColor() == .blue {
+                UIView.animate(withDuration: 0.5, delay: 0, options: .beginFromCurrentState, animations: {
+                    self.transform = .init(scaleX: 1, y: 1)
+                    self.topView.setBackroundColorForStack(color: .gray)
+                    self.topView.setBackgroundColorForDiscount(color: .gray)
+                    self.bottomView.backgroundColor = .gray
+                })
+            } else {
+                UIView.animate(withDuration: 0.5, delay: 0, options: .beginFromCurrentState, animations: {
+                    self.transform = .init(scaleX: 1, y: 1.1)
+                    self.topView.setBackroundColorForStack(color: .blue)
+                    self.topView.setBackgroundColorForDiscount(color: .blue)
+                    self.bottomView.backgroundColor = .blue
+                })}
+        }
+    }
+    
+    func setupOtherPlansAfterClickedNewPlan() {
+        if topView.discountIsSet == false {
+            UIView.animate(withDuration: 0.5, delay: 0, options: .beginFromCurrentState, animations: {
+                self.transform = .init(scaleX: 1, y: 1)
+                self.topView.setBackroundColorForStack(color: .gray)
+                self.bottomView.backgroundColor = .gray
+            })
+        } else {
+            UIView.animate(withDuration: 0.5, delay: 0, options: .beginFromCurrentState, animations: {
+                self.transform = .init(scaleX: 1, y: 1)
+                self.topView.setBackroundColorForStack(color: .gray)
+                self.topView.setBackgroundColorForDiscount(color: .gray)
+                self.bottomView.backgroundColor = .gray
+            })
+        }
+    }
+    
     func setupStack() {
         addSubview(stackView)
         stackView.axis = .vertical
@@ -68,7 +101,6 @@ private extension PlanView {
         topView.snp.makeConstraints { make in
             make.height.equalTo(Constants.topPlanHeight)
         }
-
     }
 
     func setupBottomView() {

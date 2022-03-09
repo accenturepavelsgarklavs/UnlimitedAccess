@@ -15,11 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-                window?.makeKeyAndVisible()
+        window?.makeKeyAndVisible()
 
-                navigationController = UINavigationController(rootViewController: makeMainController())
-                
-                window?.rootViewController = navigationController
+        navigationController = UINavigationController(rootViewController: makeMainController())
+
+        window?.rootViewController = navigationController
         return true
     }
 
@@ -29,9 +29,9 @@ private extension AppDelegate {
     func makeMainController() -> UIViewController {
         let mainController = MainViewController()
         let mainViewModel = MainViewModel()
-        
+
         mainController.configure(mainViewModel: mainViewModel)
-        
+
         return mainController
     }
 }

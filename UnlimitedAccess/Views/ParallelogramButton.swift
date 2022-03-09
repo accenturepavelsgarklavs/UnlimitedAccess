@@ -17,7 +17,9 @@ final class ParallelogramButton: UIButton {
     override func draw(_ rect: CGRect) {
         let path = UIBezierPath()
 
-        guard let offset = offset else { return }
+        guard let offset = offset else {
+            return
+        }
 
         path.move(to: CGPoint(x: bounds.minX + offset, y: bounds.minY))
         path.addLine(to: CGPoint(x: bounds.maxX, y: bounds.minY))

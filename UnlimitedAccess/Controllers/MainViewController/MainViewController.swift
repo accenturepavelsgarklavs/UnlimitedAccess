@@ -9,53 +9,59 @@ import UIKit
 import SnapKit
 
 final class MainViewController: UIViewController {
-    
+
     private var mainViewModel: MainViewModel?
 
     private let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
     private let continueButton = ParallelogramButton()
     private let footerStack = UIStackView()
-    private let offerStack = UIStackView()
-    private let oneMonthStack = OneMonthStackView()
-    private let oneYearStack = OneYearStackView()
-    private let threeMonthStack = ThreeMonthStackView()
+    private let planStack = UIStackView()
+    private let oneMonthView = PlanView()
+    private let oneYearView = PlanView()
+    private let threeMonthView = PlanView()
     private let titleDescriptionLabel = UILabel()
     private let titleLabel = UILabel()
+    private let scrollView = UIScrollView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBackground()
         setupFooterStack()
-        setupContinueButton()
-        setupOfferStack()
-        setupTitleDescriptionLabel()
+        setupScrollView()
         setupTitleLabel()
+        setupTitleDescriptionLabel()
+        setupPlanStack()
+        setupOneYearView()
+        setupThreeMonthView()
+        setupOneMonthView()
+        setupContinueButton()
     }
 
     func configure(mainViewModel: MainViewModel) {
-            self.mainViewModel = mainViewModel
-        }
+        self.mainViewModel = mainViewModel
+    }
 }
 
 private extension MainViewController {
     func setupBackground() {
         backgroundImage.image = UIImage(named: "bgImage")
-        backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
+        backgroundImage.contentMode = .scaleAspectFill
         view.addSubview(backgroundImage)
     }
 
     func setupContinueButton() {
-        view.addSubview(continueButton)
+        scrollView.addSubview(continueButton)
         continueButton.configure(offset: 10, fillColor: .blue)
 
         continueButton.setTitle("Continue", for: .normal)
         continueButton.titleLabel?.font = UIFont(name: "BebasNeue", size: 32)
-        
+
         continueButton.setTitleColor(.gray, for: .highlighted)
 
         continueButton.snp.makeConstraints { make in
             make.height.equalTo(60)
-            make.bottom.equalTo(footerStack.snp.top).offset(-25)
+            make.top.equalTo(planStack.snp.bottom).offset(35)
+            make.bottom.equalTo(scrollView.snp.bottom)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(40)
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(40)
         }
@@ -83,31 +89,60 @@ private extension MainViewController {
         }
     }
 
-    func setupOfferStack() {
-        view.addSubview(offerStack)
+    func setupPlanStack() {
+        scrollView.addSubview(planStack)
+        
+        planStack.axis = .horizontal
+        planStack.distribution = .fillEqually
+        planStack.spacing = 5
 
-        offerStack.axis = .horizontal
-        offerStack.alignment = .bottom
-        offerStack.distribution = .equalCentering
-
-        offerStack.addArrangedSubview(oneMonthStack)
-        oneMonthStack.configure()
-
-        offerStack.addArrangedSubview(oneYearStack)
-        oneYearStack.configure()
-
-        offerStack.addArrangedSubview(threeMonthStack)
-        threeMonthStack.configure()
-
-        offerStack.snp.makeConstraints { make in
-            make.bottom.equalTo(continueButton.snp.top).offset(-25)
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(30)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
+        planStack.snp.makeConstraints { make in
+            make.top.equalTo(titleDescriptionLabel.snp.bottom).offset(15)
+            make.width.equalTo(scrollView.snp.width)
         }
     }
 
+    func setupOneMonthView() {
+        planStack.addArrangedSubview(oneMonthView)
+        oneMonthView.configure()
+
+        let oneMonthTopPlanInfo = PlanTopView.Model(durationText: "1", pricePerWeekText: "15$ / week", durationUnitText: "Month")
+        let oneMonthBottomPlanInfo = PlanBottomView.Model(priceLabelText: "15$", unitLabelText: "Month")
+
+        oneMonthView.setPlansInfo(topModel: oneMonthTopPlanInfo, bottomModel: oneMonthBottomPlanInfo)
+
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(oneMonthViewClickAction))
+        oneMonthView.addGestureRecognizer(gesture)
+    }
+
+    func setupOneYearView() {
+        planStack.addArrangedSubview(oneYearView)
+        oneYearView.configure()
+
+        let oneYearTopPlanInfo = PlanTopView.Model(durationText: "1", pricePerWeekText: "35$ / week", durationUnitText: "Year", discountText: "Save 50%")
+        let oneYearBottomPlanInfo = PlanBottomView.Model(priceLabelText: "45$", unitLabelText: "Year")
+
+        oneYearView.setPlansInfo(topModel: oneYearTopPlanInfo, bottomModel: oneYearBottomPlanInfo)
+
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(oneYearViewClickAction))
+        oneYearView.addGestureRecognizer(gesture)
+    }
+
+    func setupThreeMonthView() {
+        planStack.addArrangedSubview(threeMonthView)
+        threeMonthView.configure()
+
+        let threeMonthTopPlanInfo = PlanTopView.Model(durationText: "3", pricePerWeekText: "20$ / week", durationUnitText: "Months")
+        let threeMonthBottomPlanInfo = PlanBottomView.Model(priceLabelText: "35$", unitLabelText: "3 Months")
+
+        threeMonthView.setPlansInfo(topModel: threeMonthTopPlanInfo, bottomModel: threeMonthBottomPlanInfo)
+
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(threeMonthViewClickAction))
+        threeMonthView.addGestureRecognizer(gesture)
+    }
+
     func setupTitleDescriptionLabel() {
-        view.addSubview(titleDescriptionLabel)
+        scrollView.addSubview(titleDescriptionLabel)
 
         titleDescriptionLabel.text = "Your new guide on the way to healthy living"
         titleDescriptionLabel.numberOfLines = 0
@@ -116,14 +151,14 @@ private extension MainViewController {
         titleDescriptionLabel.font = UIFont(name: "Roboto", size: 18)
 
         titleDescriptionLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(offerStack.snp.top).offset(-25)
+            make.top.equalTo(titleLabel.snp.bottom).inset(5)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(60)
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(60)
         }
     }
 
     func setupTitleLabel() {
-        view.addSubview(titleLabel)
+        scrollView.addSubview(titleLabel)
 
         titleLabel.text = "Unlimited access"
         titleLabel.textAlignment = .center
@@ -131,9 +166,40 @@ private extension MainViewController {
         titleLabel.font = UIFont(name: "BebasNeue", size: 48)
 
         titleLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(titleDescriptionLabel.snp.top)
+            make.top.equalTo(scrollView.snp.top).offset(15)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
+    }
+
+    func setupScrollView() {
+        view.addSubview(scrollView)
+        
+        scrollView.showsVerticalScrollIndicator = false
+
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.centerY).offset(-70)
+            make.bottom.equalTo(footerStack.snp.top).offset(-10)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().inset(20)
+        }
+    }
+
+    @objc func oneMonthViewClickAction() {
+        oneMonthView.viewModel.onPlanClicked?()
+        oneYearView.viewModel.onPlanClickedUncheckPrevious?()
+        threeMonthView.viewModel.onPlanClickedUncheckPrevious?()
+    }
+
+    @objc func oneYearViewClickAction() {
+        oneYearView.viewModel.onPlanClicked?()
+        oneMonthView.viewModel.onPlanClickedUncheckPrevious?()
+        threeMonthView.viewModel.onPlanClickedUncheckPrevious?()
+    }
+
+    @objc func threeMonthViewClickAction() {
+        threeMonthView.viewModel.onPlanClicked?()
+        oneMonthView.viewModel.onPlanClickedUncheckPrevious?()
+        oneYearView.viewModel.onPlanClickedUncheckPrevious?()
     }
 }
